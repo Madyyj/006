@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz: Czy nadajesz się do mat-fiz-inf?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 20px;
+        }
+        .quiz-container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>Quiz: Czy nadajesz się do mat-fiz-inf? </h1>
+
+    <form id="quizForm">
+
+        <div class="question">
+            <p>1. Ile to jest 2 + 2?</p>
+            <label><input type="radio" name="q1" value="A"> A) 4</label><br>
+            <label><input type="radio" name="q1" value="B"> B) Zależy od układu odniesienia</label><br>
+            <label><input type="radio" name="q1" value="C"> C) 22</label><br>
+            <label><input type="radio" name="q1" value="D"> D) Poczekaj, napiszę program i sprawdzę</label>
+        </div>
+
+        <div class="question">
+            <p>2. Co robisz, gdy coś nie działa?</p>
+            <label><input type="radio" name="q2" value="A"> A) Panikuję</label><br>
+            <label><input type="radio" name="q2" value="B"> B) Wyłączam i włączam jeszcze raz</label><br>
+            <label><input type="radio" name="q2" value="C"> C) Szukam błędu 3h (średnik 😅)</label><br>
+            <label><input type="radio" name="q2" value="D"> D) "To feature, nie bug"</label>
+        </div>
+
+        <div class="question">
+            <p>3. Twoje podejście do matematyki:</p>
+            <label><input type="radio" name="q3" value="A"> A) Po co mi to</label><br>
+            <label><input type="radio" name="q3" value="B"> B) Może być</label><br>
+            <label><input type="radio" name="q3" value="C"> C) Lubię</label><br>
+            <label><input type="radio" name="q3" value="D"> D) Całki o 2 w nocy </label>
+        </div>
+
+        <div class="question">
+            <p>4. Twój stosunek do komputerów:</p>
+            <label><input type="radio" name="q4" value="A"> A) YouTube only</label><br>
+            <label><input type="radio" name="q4" value="B"> B) Czasem coś kliknę</label><br>
+            <label><input type="radio" name="q4" value="C"> C) Lubię ogarniać</label><br>
+            <label><input type="radio" name="q4" value="D"> D) Linux dla zabawy </label>
+        </div>
+
+        <div class="question">
+            <p>5. Co robisz w wolnym czasie?</p>
+            <label><input type="radio" name="q5" value="A"> A) Netflix</label><br>
+            <label><input type="radio" name="q5" value="B"> B) Znajomi</label><br>
+            <label><input type="radio" name="q5" value="C"> C) Gry + nauka</label><br>
+            <label><input type="radio" name="q5" value="D"> D) Programuję coś bezużytecznego </label>
+        </div>
+
+        <button type="button" onclick="calculateResult()">Sprawdź wynik</button>
+
+    </form>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function calculateResult() {
+    let answers = document.querySelectorAll('input[type="radio"]:checked');
+    
+    if (answers.length < 5) {
+        document.getElementById("result").innerText = "Odpowiedz na wszystkie pytania!";
+        return;
+    }
+
+    let count = {A:0, B:0, C:0, D:0};
+
+    answers.forEach(ans => {
+        count[ans.value]++;
+    });
+
+    let resultText = "";
+
+    if (count.D >= 3) {
+        resultText = " Witaj w domu, przyszły olimpijczyku!";
+    } else if (count.C >= 3) {
+        resultText = " Dobry kandydat!";
+    } else if (count.B >= 3) {
+        resultText = " Dasz radę, ale będzie ciężko!";
+    } else {
+        resultText = " Lepiej rozważ coś innego...";
+    }
+
+    document.getElementById("result").innerText = resultText;
+}
+</script>
+
+</body>
+</html>
